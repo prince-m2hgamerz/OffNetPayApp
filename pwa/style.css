@@ -1,0 +1,409 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap');
+
+/* ─── Reset & Root ─── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:        #F7F7FB;
+  --surface:   #FFFFFF;
+  --surface-2: #F0F0F8;
+  --border:    #E0E0EE;
+  --text:      #1A1A2E;
+  --text-2:    #5C5C7A;
+  --text-3:    #9E9EB8;
+  --yellow:    #FFBF00;
+  --yellow-d:  #E5AC00;
+  --yellow-dd: #C49400;
+  --green:     #00C853;
+  --red:       #FF4D4D;
+  --navy:      #1A1A2E;
+  --rad:       20px;
+  --shadow:    0 4px 24px rgba(26,26,46,0.08);
+  --shadow-lg: 0 12px 48px rgba(26,26,46,0.12);
+}
+
+html {
+  font-family: "Poppins", system-ui, sans-serif;
+  font-size: 16px;
+  background: var(--bg);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  background:
+    radial-gradient(600px 400px at 80% 0%, rgba(255,191,0,0.12) 0%, transparent 60%),
+    radial-gradient(500px 400px at 0% 100%, rgba(255,191,0,0.06) 0%, transparent 50%),
+    var(--bg);
+}
+
+/* ─── Header ─── */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 24px;
+  background: rgba(255,255,255,0.85);
+  backdrop-filter: saturate(180%) blur(16px);
+  -webkit-backdrop-filter: saturate(180%) blur(16px);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 800;
+  font-size: 1.25rem;
+  color: var(--navy);
+  text-decoration: none;
+}
+
+.logo img {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+}
+
+.logo .accent { color: var(--yellow-d); }
+
+.badge {
+  font-size: 0.6rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  background: var(--yellow);
+  color: var(--navy);
+  padding: 3px 8px;
+  border-radius: 8px;
+}
+
+/* ─── Main Container ─── */
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 32px 20px 120px;
+  max-width: 460px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* ─── Tabs ─── */
+.tabs {
+  display: flex;
+  background: var(--surface);
+  border-radius: 16px;
+  padding: 4px;
+  box-shadow: var(--shadow);
+  width: 100%;
+  margin-bottom: 28px;
+}
+
+.tab {
+  flex: 1;
+  padding: 12px;
+  border: none;
+  background: transparent;
+  font-family: inherit;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-3);
+  cursor: pointer;
+  border-radius: 13px;
+  transition: all 200ms ease;
+}
+
+.tab.active {
+  background: var(--yellow);
+  color: var(--navy);
+  box-shadow: 0 2px 12px rgba(255,191,0,0.3);
+}
+
+/* ─── Card ─── */
+.card {
+  width: 100%;
+  background: var(--surface);
+  border-radius: var(--rad);
+  padding: 28px 24px;
+  box-shadow: var(--shadow);
+  margin-bottom: 20px;
+}
+
+.card-title {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-3);
+  margin-bottom: 20px;
+}
+
+/* ─── Input Fields ─── */
+.field { margin-bottom: 20px; }
+
+.field label {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-2);
+  margin-bottom: 8px;
+}
+
+.field input {
+  width: 100%;
+  padding: 14px 16px;
+  border: 2px solid var(--border);
+  border-radius: 14px;
+  font-family: inherit;
+  font-size: 1rem;
+  color: var(--text);
+  background: var(--bg);
+  outline: none;
+  transition: border-color 200ms ease, box-shadow 200ms ease;
+}
+
+.field input:focus {
+  border-color: var(--yellow);
+  box-shadow: 0 0 0 4px rgba(255,191,0,0.15);
+}
+
+.field input::placeholder {
+  color: var(--text-3);
+}
+
+.field .hint {
+  font-size: 0.72rem;
+  color: var(--text-3);
+  margin-top: 6px;
+}
+
+/* ─── Amount Presets ─── */
+.presets {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+
+.preset {
+  padding: 8px 16px;
+  border: 2px solid var(--border);
+  border-radius: 12px;
+  font-family: inherit;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-2);
+  background: var(--surface);
+  cursor: pointer;
+  transition: all 150ms ease;
+}
+
+.preset:hover, .preset.active {
+  border-color: var(--yellow);
+  background: rgba(255,191,0,0.08);
+  color: var(--yellow-dd);
+}
+
+/* ─── Primary Button ─── */
+.btn-primary {
+  width: 100%;
+  padding: 16px;
+  border: none;
+  border-radius: 16px;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--navy);
+  background: var(--yellow);
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(255,191,0,0.35);
+  transition: all 200ms ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.btn-primary:hover {
+  background: var(--yellow-d);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 24px rgba(255,191,0,0.4);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+.btn-primary:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.btn-primary svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* ─── Secondary Button ─── */
+.btn-secondary {
+  width: 100%;
+  padding: 14px;
+  border: 2px solid var(--border);
+  border-radius: 16px;
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-2);
+  background: var(--surface);
+  cursor: pointer;
+  transition: all 200ms ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.btn-secondary:hover {
+  border-color: var(--yellow);
+  color: var(--yellow-dd);
+}
+
+/* ─── Success / Result Card ─── */
+.result {
+  text-align: center;
+  padding: 40px 24px;
+}
+
+.result .icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+  font-size: 2rem;
+}
+
+.result .icon.success { background: rgba(0,200,83,0.12); }
+.result .icon.info    { background: rgba(255,191,0,0.12); }
+
+.result h2 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.result p {
+  font-size: 0.88rem;
+  color: var(--text-2);
+  line-height: 1.6;
+}
+
+.result .detail-box {
+  background: var(--bg);
+  border-radius: 14px;
+  padding: 16px;
+  margin: 20px 0;
+  text-align: left;
+}
+
+.result .detail-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  font-size: 0.85rem;
+}
+
+.result .detail-row .label { color: var(--text-3); }
+.result .detail-row .value { font-weight: 600; color: var(--text); }
+
+.result .actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 24px;
+}
+
+/* ─── Info Banner ─── */
+.info-banner {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  background: rgba(255,191,0,0.08);
+  border: 1px solid rgba(255,191,0,0.2);
+  border-radius: 14px;
+  padding: 16px;
+  margin-bottom: 24px;
+}
+
+.info-banner .info-icon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  color: var(--yellow-dd);
+  margin-top: 2px;
+}
+
+.info-banner p {
+  font-size: 0.78rem;
+  color: var(--text-2);
+  line-height: 1.55;
+}
+
+/* ─── Bottom Safe Area ─── */
+.footer {
+  text-align: center;
+  padding: 20px;
+  font-size: 0.72rem;
+  color: var(--text-3);
+}
+
+.footer a { color: var(--yellow-dd); text-decoration: none; }
+.footer a:hover { text-decoration: underline; }
+
+/* ─── Animations ─── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.card { animation: fadeUp 400ms ease both; }
+.card:nth-child(2) { animation-delay: 80ms; }
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+.copied { animation: pulse 300ms ease; }
+
+/* ─── Dark mode ─── */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg:        #0F0F1A;
+    --surface:   #1A1A2E;
+    --surface-2: #22223A;
+    --border:    #2D2D5E;
+    --text:      #F0F0F8;
+    --text-2:    #A0A0C0;
+    --text-3:    #6060A0;
+  }
+  .header { background: rgba(15,15,26,0.88); }
+  .field input { background: var(--surface-2); }
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 480px) {
+  .main { padding: 20px 16px 100px; }
+  .card { padding: 22px 18px; }
+}
