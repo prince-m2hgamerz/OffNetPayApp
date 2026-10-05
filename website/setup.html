@@ -27,20 +27,20 @@
       --max: 960px; --pad: clamp(16px, 4.5vw, 48px);
     }
 
-    [data-theme="light"] {
-      --black:        #F8F9FA;
-      --surface:      #FFFFFF;
-      --surface-hi:   #F1F3F5;
-      --surface-hir:  #E9ECEF;
-      --border:       #DEE2E6;
-      --border-s:     #CED4DA;
-      --text-1:       #212529;
-      --text-2:       #495057;
-      --text-3:       #6C757D;
-      --lime:         #A6F81B;
-      --lime-dim:     #8DD613;
-      --pattern-color: rgba(0,0,0,0.06);
-      --nav-bg:       rgba(248, 249, 250, 0.88);
+    [data-theme="fampay"] {
+      --black:        #000000;
+      --surface:      #0E0F12;
+      --surface-hi:   #16181D;
+      --surface-hir:  #1F2229;
+      --border:       #2A2D34;
+      --border-s:     #3A3E47;
+      --text-1:       #FFFFFF;
+      --text-2:       #9BA1A8;
+      --text-3:       #5A6068;
+      --lime:         #FFC700;
+      --lime-dim:     #E6B300;
+      --pattern-color: rgba(255, 199, 0, 0.04);
+      --nav-bg:       rgba(0,0,0,0.88);
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -237,7 +237,7 @@
     <a href="about.html">About</a>
   </div>
   <div class="nav-right">
-      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme" style="background:transparent; border:none; cursor:pointer; font-size:18px; padding:0 8px; color:var(--text-1); transition: transform 0.2s;">🌓</button>
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme" style="background:transparent; border:none; cursor:pointer; font-size:18px; padding:0 8px; color:var(--text-1); transition: transform 0.2s;">🟨</button>
     <a href="https://github.com/prince-m2hgamerz/OffNetPayApp" target="_blank" rel="noopener" class="nav-star" aria-label="Star on GitHub">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: #ffb300;"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" fill="currentColor"/></svg>
     </a>
@@ -373,7 +373,7 @@
   if (themeToggleBtn) {
     themeToggleBtn.addEventListener('click', () => {
       let theme = document.documentElement.getAttribute('data-theme');
-      let newTheme = (theme === 'dark' || !theme) ? 'light' : 'dark';
+      let newTheme = (theme === 'dark' || !theme) ? 'fampay' : 'dark';
       document.documentElement.setAttribute('data-theme', newTheme);
       localStorage.setItem('theme', newTheme);
     });
