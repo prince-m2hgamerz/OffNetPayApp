@@ -1,27 +1,26 @@
 package com.offnetpay.app.presentation.ui.theme
 
 import android.app.Activity
-import android.os.Build
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.lightColorScheme
+import androidx.compose.material3.darkColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
 
-private val FamPayColorScheme = lightColorScheme(
+private val NeoPopColorScheme = darkColorScheme(
     primary             = NeoPopColors.Accent,
-    onPrimary           = NeoPopColors.TextPrimary,
+    onPrimary           = NeoPopColors.Black,
     primaryContainer    = NeoPopColors.AccentDim,
-    onPrimaryContainer  = NeoPopColors.TextPrimary,
+    onPrimaryContainer  = NeoPopColors.Black,
     secondary           = NeoPopColors.TextSecondary,
     onSecondary         = NeoPopColors.Surface,
-    background          = NeoPopColors.SurfaceHigh,
+    background          = NeoPopColors.Black,
     onBackground        = NeoPopColors.TextPrimary,
     surface             = NeoPopColors.Surface,
     onSurface           = NeoPopColors.TextPrimary,
-    surfaceVariant      = NeoPopColors.SurfaceHigher,
+    surfaceVariant      = NeoPopColors.SurfaceHigh,
     onSurfaceVariant    = NeoPopColors.TextSecondary,
     error               = NeoPopColors.Danger,
     onError             = NeoPopColors.Surface,
@@ -30,7 +29,7 @@ private val FamPayColorScheme = lightColorScheme(
 )
 
 /**
- * FamPay-inspired light theme — clean white surfaces, navy text, yellow CTA.
+ * NeoPOP dark theme — cyber/dark backgrounds, white text, lime green CTA.
  */
 @Composable
 fun OffNetPayTheme(content: @Composable () -> Unit) {
@@ -38,14 +37,14 @@ fun OffNetPayTheme(content: @Composable () -> Unit) {
     if (!view.isInEditMode) {
         SideEffect {
             val window = (view.context as Activity).window
-            window.statusBarColor = NeoPopColors.Surface.toArgb()
-            window.navigationBarColor = NeoPopColors.SurfaceHigh.toArgb()
-            WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = true
-            WindowCompat.getInsetsController(window, view).isAppearanceLightNavigationBars = true
+            window.statusBarColor = NeoPopColors.Black.toArgb()
+            window.navigationBarColor = NeoPopColors.Black.toArgb()
+            WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = false
+            WindowCompat.getInsetsController(window, view).isAppearanceLightNavigationBars = false
         }
     }
     MaterialTheme(
-        colorScheme = FamPayColorScheme,
+        colorScheme = NeoPopColorScheme,
         typography = NeoPopTypography,
         shapes = NeoPopShapes,
         content = content
