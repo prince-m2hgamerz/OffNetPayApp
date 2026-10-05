@@ -19,6 +19,16 @@
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <style>
     :root {
+      --btn-radius: 0px;
+      --card-radius: 0px;
+      --btn-shadow: 3px 3px 0 var(--lime-dim);
+      --btn-shadow-hover: 4px 4px 0 var(--lime-dim);
+      --btn-shadow-active: none;
+      --btn-translate-hover: translate(-1px, -1px);
+      --btn-translate-active: translate(3px, 3px);
+      --card-bg: transparent;
+      --card-border: 1px solid var(--border);
+      --font-weight-headings: 800;
       --black: #000000; --surface: #0E0F12; --surface-hi: #16181D;
       --border: #2A2D34; --border-s: #3A3E47;
       --text-1: #FFFFFF; --text-2: #9BA1A8; --text-3: #5A6068;
@@ -31,17 +41,29 @@
     [data-theme="fampay"] {
       --black:        #000000;
       --surface:      #0E0F12;
-      --surface-hi:   #16181D;
-      --surface-hir:  #1F2229;
-      --border:       #2A2D34;
-      --border-s:     #3A3E47;
+      --surface-hi:   #1A1C20;
+      --surface-hir:  #282A30;
+      --border:       rgba(255, 255, 255, 0.08);
+      --border-s:     rgba(255, 255, 255, 0.12);
       --text-1:       #FFFFFF;
-      --text-2:       #9BA1A8;
+      --text-2:       #A0A5AD;
       --text-3:       #5A6068;
       --lime:         #FFC700;
-      --lime-dim:     #E6B300;
-      --pattern-color: rgba(255, 199, 0, 0.04);
-      --nav-bg:       rgba(0,0,0,0.88);
+      --lime-dim:     #FABE00;
+      --pattern-color: rgba(255, 199, 0, 0.00); /* Hidden pattern in fampay mode */
+      --nav-bg:       rgba(0,0,0,0.85);
+
+      /* FamApp Specific Overrides */
+      --btn-radius: 50px;
+      --card-radius: 20px;
+      --btn-shadow: none;
+      --btn-shadow-hover: 0 4px 14px rgba(255, 199, 0, 0.25);
+      --btn-shadow-active: none;
+      --btn-translate-hover: translateY(-2px);
+      --btn-translate-active: scale(0.98);
+      --card-bg: linear-gradient(180deg, #282A30 0%, #1A1C20 100%);
+      --card-border: 1px solid rgba(255, 255, 255, 0.05);
+      --font-weight-headings: 700;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -65,12 +87,12 @@
       background: var(--nav-bg, rgba(0,0,0,0.88)); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
       border-bottom: 1px solid var(--border);
     }
-    .nav-brand { display: flex; align-items: center; gap: 10px; font-size: 20px; font-weight: 800; letter-spacing: -0.02em; }
+    .nav-brand { display: flex; align-items: center; gap: 10px; font-size: 20px; font-weight: var(--font-weight-headings); letter-spacing: -0.02em; }
     .nav-brand img { width: 44px; height: 44px; }
     .nav-links { display: flex; gap: 24px; margin: 0 auto; font-size: 13px; font-weight: 500; color: var(--text-2); }
     .nav-links a:hover { color: var(--text-1); } .nav-links a.active { color: var(--lime); }
     .nav-dl { font-size: 12px; font-weight: 700; background: var(--lime); color: var(--black); padding: 10px 16px; min-height: 40px; box-shadow: 2px 2px 0 var(--lime-dim); transition: box-shadow 80ms, transform 80ms, opacity 180ms ease; -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
-    .nav-dl:hover { box-shadow: 3px 3px 0 var(--lime-dim); transform: translate(-1px,-1px); }
+    .nav-dl:hover { box-shadow: var(--btn-shadow); border-radius: var(--btn-radius); transform: translate(-1px,-1px); }
 
     .nav-star {
       display: flex;
@@ -183,7 +205,7 @@
 
     /* Hero */
     .legal-hero { padding: clamp(60px, 10vw, 110px) 0 clamp(36px, 5vw, 60px); }
-    .legal-hero h1 { font-size: clamp(32px, 7vw, 72px); font-weight: 800; letter-spacing: -0.04em; line-height: 1.0; color: var(--text-1); }
+    .legal-hero h1 { font-size: clamp(32px, 7vw, 72px); font-weight: var(--font-weight-headings); letter-spacing: -0.04em; line-height: 1.0; color: var(--text-1); }
     .legal-hero .effective-date { font-family: var(--mono); font-size: 11px; color: var(--text-3); text-transform: uppercase; margin-top: 10px; display: block; }
     .legal-hero .intro { font-size: clamp(14px, 1.2vw, 16px); color: var(--text-2); line-height: 1.6; max-width: 65ch; margin-top: 16px; }
 
@@ -195,7 +217,7 @@
       background: var(--surface);
       border: 1px solid var(--border);
       padding: 24px;
-      box-shadow: 3px 3px 0 var(--border);
+      box-shadow: var(--btn-shadow); border-radius: var(--btn-radius);
       transition: border-color 0.2s ease, box-shadow 0.2s ease;
     }
     .legal-card:hover {
@@ -225,12 +247,12 @@
     .cat-img { width: 100%; height: clamp(160px, 26vw, 300px); object-fit: cover; object-position: center 35%; filter: brightness(0.4); }
     .cat-copy { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: var(--pad); }
     .cat-by { font-family: var(--mono); font-size: 10px; letter-spacing: 0.2em; color: var(--lime); margin-bottom: 12px; text-transform: uppercase; }
-    .cat-line { font-size: clamp(22px, 4.5vw, 44px); font-weight: 800; letter-spacing: -0.03em; color: var(--text-1); line-height: 1.08; }
+    .cat-line { font-size: clamp(22px, 4.5vw, 44px); font-weight: var(--font-weight-headings); letter-spacing: -0.03em; color: var(--text-1); line-height: 1.08; }
 
     /* Footer */
     footer { background: var(--surface); border-top: 1px solid var(--border); padding: 32px var(--pad); }
     .foot-in { max-width: var(--max); margin: 0 auto; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 20px; }
-    .foot-brand { display: flex; align-items: center; gap: 8px; font-size: 18px; font-weight: 800; letter-spacing: -0.02em; }
+    .foot-brand { display: flex; align-items: center; gap: 8px; font-size: 18px; font-weight: var(--font-weight-headings); letter-spacing: -0.02em; }
     .foot-brand img { width: 30px; height: 30px; }
     .foot-links { display: flex; flex-wrap: wrap; gap: 20px; font-size: 12px; color: var(--text-3); font-weight: 500; }
     .foot-links a:hover { color: var(--text-1); }
