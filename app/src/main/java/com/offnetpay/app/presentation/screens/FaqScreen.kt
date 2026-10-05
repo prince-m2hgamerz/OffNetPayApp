@@ -77,7 +77,7 @@ private val step3ImageRes: Int? = R.drawable.bhim_step3
 private val TUTORIAL_VIDEO_URL: String? =
     "https://youtube.com/playlist?list=PL6zhuU_l94t1y25MDt96Z-MltD3S6iPFj&si=GNlanTwR-IcfOBI"
 
-private const val GITHUB_REPO_URL = "https://github.com/m2hgamerz/OffNetPayApp/"
+private const val GITHUB_REPO_URL = "https://github.com/prince-m2hgamerz/OffNetPayApp/"
 private const val RESTRICTED_SETTINGS_GUIDE_URL =
     "https://cleanbrowsing.org/support/mobile/disable-restricted-settings-android"
 

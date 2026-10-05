@@ -15,7 +15,7 @@ All over plain `*99#` USSD on your SIM. No data, no Wi-Fi, no account.
 [![License](https://img.shields.io/badge/license-MIT-success)](LICENSE)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen)](CONTRIBUTING.md)
 
-**[Website](https://OffNetPayApp.vercel.app/)** · **[PWA](https://offnetpay.vercel.app/)** · **[Download APK](https://github.com/m2hgamerz/OffNetPayApp/releases)**
+**[Website](https://OffNetPayApp.vercel.app/)** · **[PWA](https://offnetpay.vercel.app/)** · **[Download APK](https://github.com/prince-m2hgamerz/OffNetPayApp/releases)**
 
 <br/>
 
@@ -42,7 +42,7 @@ Every other UPI app needs the internet. In huge parts of India, that's a luxury.
 
 `*99#` is a USSD-based UPI service that works over your SIM's voice channel (no data needed). The catch: dialling raw codes and typing UPI IDs on a number pad is brutal. **OffNetPay puts a clean app on top of it.** Same modern feel as GPay or PhonePe: type, scan, tap. Zero bytes of data used.
 
-> **Built by [m2hgamerz](https://github.com/m2hgamerz) & [m2hgamerz](https://github.com/m2hgamerz).** Side project, not a registered payment service. Your PIN, your data, your transactions: they never leave the device.
+> **Built by [m2hgamerz](https://github.com/prince-m2hgamerz) & [m2hgamerz](https://github.com/prince-m2hgamerz).** Side project, not a registered payment service. Your PIN, your data, your transactions: they never leave the device.
 
 ---
 

@@ -67,5 +67,5 @@ payment-success-alt.jpeg, payment-failed.jpeg, settings.jpeg, faq.jpeg
 
 - **App landing:** [OffNetPayApp.vercel.app](https://OffNetPayApp.vercel.app/)
 - **PWA:** [OffNetPay.vercel.app](https://OffNetPay.vercel.app/)
-- **m2hgamerz:** [github.com/m2hgamerz](https://github.com/m2hgamerz/)
-- **m2hgamerz:** [github.com/m2hgamerz](https://github.com/m2hgamerz/)
+- **m2hgamerz:** [github.com/prince-m2hgamerz](https://github.com/prince-m2hgamerz/)
+- **m2hgamerz:** [github.com/prince-m2hgamerz](https://github.com/prince-m2hgamerz/)

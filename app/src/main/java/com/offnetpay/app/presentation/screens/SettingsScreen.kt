@@ -293,7 +293,7 @@ fun SettingsScreen(
 
         AboutSection(
             versionName = versionName,
-            onOpenDeveloper = { openUrl(context, "https://github.com/m2hgamerz/") }
+            onOpenDeveloper = { openUrl(context, "https://github.com/prince-m2hgamerz/") }
         )
 
         // No trailing spacer here — the AboutSection's footer image is
