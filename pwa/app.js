@@ -9,12 +9,21 @@ $$('.np-tab').forEach(btn => {
     
     const tab = btn.dataset.tab;
     $('#pay-view').style.display    = tab === 'pay' ? 'block' : 'none';
+    $('#scan-view').style.display   = tab === 'scan' ? 'block' : 'none';
     $('#bal-view').style.display    = tab === 'balance' ? 'block' : 'none';
     $('#history-view').style.display = tab === 'history' ? 'block' : 'none';
     $('#result-view').style.display = 'none';
     
     if (tab === 'history') {
       loadHistory();
+    }
+
+    if (tab === 'scan') {
+      $('#qr-result').style.display = 'none';
+      $('#qr-reader').style.display = 'block';
+      if (typeof Html5Qrcode !== 'undefined') startQrScanner();
+    } else {
+      if (typeof Html5Qrcode !== 'undefined') stopQrScanner();
     }
   });
 });
@@ -176,6 +185,67 @@ if ($('#clear-history-btn')) {
   $('#clear-history-btn').addEventListener('click', () => {
     localStorage.removeItem('offnetpay_history');
     loadHistory();
+  });
+}
+
+// ─── QR Scanner Logic ───
+let html5QrCode;
+
+function startQrScanner() {
+  if (!html5QrCode) {
+    html5QrCode = new Html5Qrcode("qr-reader");
+  }
+  
+  if (html5QrCode.isScanning) return;
+
+  html5QrCode.start(
+    { facingMode: "environment" }, 
+    { fps: 10, qrbox: { width: 250, height: 250 } },
+    (decodedText, decodedResult) => {
+      // On successful scan
+      let pa = null;
+      if (decodedText.toLowerCase().includes("upi://pay")) {
+        const match = decodedText.match(/[?&]pa=([^&]+)/i);
+        if (match) pa = decodeURIComponent(match[1]);
+      } else if (isValidVPA(decodedText)) {
+        pa = decodedText;
+      }
+      
+      if (pa) {
+        html5QrCode.stop().then(() => {
+          $('#qr-result').style.display = 'block';
+          $('#qr-reader').style.display = 'none';
+          $('#qr-vpa').textContent = pa;
+        }).catch(err => { console.log("Failed to stop scanner", err); });
+      }
+    },
+    (errorMessage) => {
+      // Ignore parse errors while scanning
+    }
+  ).catch(err => {
+    console.log("Error starting QR scanner", err);
+    $('#qr-reader').innerHTML = `<p style="padding:20px; color:var(--text-3); text-align:center;">Camera access denied or unavailable.</p>`;
+  });
+}
+
+function stopQrScanner() {
+  if (html5QrCode && html5QrCode.isScanning) {
+    html5QrCode.stop().catch(err => console.log(err));
+  }
+}
+
+if ($('#qr-use-btn')) {
+  $('#qr-use-btn').addEventListener('click', () => {
+    const pa = $('#qr-vpa').textContent;
+    $$('.np-tab').forEach(b => b.classList.remove('active'));
+    $$('.np-tab[data-tab="pay"]')[0].classList.add('active');
+    
+    $('#scan-view').style.display = 'none';
+    $('#pay-view').style.display = 'block';
+    $('#vpa').value = pa;
+    validatePay();
+    
+    $('#qr-result').style.display = 'none';
   });
 }
 

@@ -140,7 +140,9 @@
       
       <div class="np-tabs">
         <div class="np-tab active" data-tab="pay">Send Money</div>
+        <div class="np-tab" data-tab="scan">Scan QR</div>
         <div class="np-tab" data-tab="balance">Check Balance</div>
+        <div class="np-tab" data-tab="history">History</div>
       </div>
 
       <!-- PAY VIEW -->
@@ -167,6 +169,18 @@
         </button>
       </div>
 
+      <!-- SCAN VIEW -->
+      <div id="scan-view" class="np-card" style="display:none; padding: 40px 24px;">
+        <h2 style="font-size:24px; margin-bottom: 16px;">Scan UPI QR</h2>
+        <p class="sub" style="margin: 0 auto 24px; color:var(--text-2);">Point your camera at any UPI QR code.</p>
+        <div id="qr-reader" style="width:100%; border:1px solid var(--border); border-radius:12px; overflow:hidden; margin-bottom:24px;"></div>
+        <div id="qr-result" style="display:none; text-align:left; background:var(--surface); border:1px dashed var(--border); padding:16px; margin-bottom:24px;">
+          <div style="font-size:12px; color:var(--text-3); text-transform:uppercase; font-weight:700; margin-bottom:8px;">Found UPI ID:</div>
+          <div id="qr-vpa" style="font-size:16px; font-family:var(--mono); color:var(--lime); margin-bottom:16px; word-break:break-all;"></div>
+          <button id="qr-use-btn" class="btn btn-lime" style="width:100%; font-size:14px; padding:12px;">Use this ID</button>
+        </div>
+      </div>
+
       <!-- BALANCE VIEW -->
       <div id="bal-view" class="np-card" style="display:none; padding: 40px 24px;">
         <h2 style="font-size:24px; margin-bottom: 16px;">Check Bank Balance</h2>
@@ -174,6 +188,15 @@
         <button class="btn btn-lime" id="bal-btn" style="width:100%;">
           Dial *99*1*6#
         </button>
+      </div>
+
+      <!-- HISTORY VIEW -->
+      <div id="history-view" class="np-card" style="display:none; padding: 40px 24px; min-height:300px;">
+        <h2 style="font-size:24px; margin-bottom: 24px;">Recent Payees</h2>
+        <div id="history-list" style="text-align:left;">
+          <!-- Populated by JS -->
+        </div>
+        <button id="clear-history-btn" class="btn btn-outline" style="width:100%; margin-top:24px; font-size:12px; padding:10px;">Clear History</button>
       </div>
 
       <!-- RESULT VIEW -->
@@ -219,6 +242,7 @@
   Install App to Home Screen
 </div>
 
+<script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
 <script src="app.js"></script>
 </body>
 </html>
