@@ -7,10 +7,15 @@ $$('.np-tab').forEach(btn => {
     $$('.np-tab').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
     
-    const isBalance = btn.dataset.tab === 'balance';
-    $('#pay-view').style.display    = isBalance ? 'none' : 'block';
-    $('#bal-view').style.display    = isBalance ? 'block' : 'none';
+    const tab = btn.dataset.tab;
+    $('#pay-view').style.display    = tab === 'pay' ? 'block' : 'none';
+    $('#bal-view').style.display    = tab === 'balance' ? 'block' : 'none';
+    $('#history-view').style.display = tab === 'history' ? 'block' : 'none';
     $('#result-view').style.display = 'none';
+    
+    if (tab === 'history') {
+      loadHistory();
+    }
   });
 });
 
@@ -55,6 +60,7 @@ if ($('#pay-btn')) {
     const vpa = $('#vpa').value.trim();
     const amt = $('#amount').value.trim();
 
+    saveToHistory(vpa);
     copyText(vpa);
     
     $('#pay-view').style.display = 'none';
@@ -122,6 +128,55 @@ if ($('#install-banner')) {
 // ─── Service Worker ───
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('sw.js', { scope: './' }).catch(() => {});
+}
+
+// ─── History Logic ───
+function saveToHistory(vpa) {
+  let history = JSON.parse(localStorage.getItem('offnetpay_history') || '[]');
+  history = history.filter(item => item !== vpa); // Remove duplicate
+  history.unshift(vpa); // Add to top
+  if (history.length > 10) history.pop(); // Keep only last 10
+  localStorage.setItem('offnetpay_history', JSON.stringify(history));
+}
+
+function loadHistory() {
+  const historyList = $('#history-list');
+  if (!historyList) return;
+  const history = JSON.parse(localStorage.getItem('offnetpay_history') || '[]');
+  
+  if (history.length === 0) {
+    historyList.innerHTML = '<p style="color:var(--text-3); font-size:14px;">No recent payees yet.</p>';
+    $('#clear-history-btn').style.display = 'none';
+    return;
+  }
+  
+  $('#clear-history-btn').style.display = 'block';
+  historyList.innerHTML = history.map(vpa => `
+    <div class="history-item" style="padding:12px 16px; border:1px solid var(--border); margin-bottom:8px; background:var(--surface-hi); cursor:pointer; display:flex; justify-content:space-between; align-items:center;">
+      <span style="font-family:var(--mono); font-size:14px; color:var(--text-1);">${vpa}</span>
+      <span style="color:var(--lime); font-size:20px;">→</span>
+    </div>
+  `).join('');
+  
+  $$('.history-item').forEach(item => {
+    item.addEventListener('click', (e) => {
+      const vpa = e.currentTarget.querySelector('span').textContent;
+      // Switch to pay tab and fill
+      $$('.np-tab').forEach(b => b.classList.remove('active'));
+      $$('.np-tab[data-tab="pay"]')[0].classList.add('active');
+      $('#history-view').style.display = 'none';
+      $('#pay-view').style.display = 'block';
+      $('#vpa').value = vpa;
+      validatePay();
+    });
+  });
+}
+
+if ($('#clear-history-btn')) {
+  $('#clear-history-btn').addEventListener('click', () => {
+    localStorage.removeItem('offnetpay_history');
+    loadHistory();
+  });
 }
 
 // Init

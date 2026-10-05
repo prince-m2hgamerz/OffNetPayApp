@@ -141,6 +141,7 @@
       <div class="np-tabs">
         <div class="np-tab active" data-tab="pay">Send Money</div>
         <div class="np-tab" data-tab="balance">Check Balance</div>
+        <div class="np-tab" data-tab="history">History</div>
       </div>
 
       <!-- PAY VIEW -->
@@ -174,6 +175,15 @@
         <button class="btn btn-lime" id="bal-btn" style="width:100%;">
           Dial *99*1*6#
         </button>
+      </div>
+
+      <!-- HISTORY VIEW -->
+      <div id="history-view" class="np-card" style="display:none; padding: 40px 24px; min-height:300px;">
+        <h2 style="font-size:24px; margin-bottom: 24px;">Recent Payees</h2>
+        <div id="history-list" style="text-align:left;">
+          <!-- Populated by JS -->
+        </div>
+        <button id="clear-history-btn" class="btn btn-outline" style="width:100%; margin-top:24px; font-size:12px; padding:10px;">Clear History</button>
       </div>
 
       <!-- RESULT VIEW -->
